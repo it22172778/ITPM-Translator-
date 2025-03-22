@@ -1,6 +1,7 @@
 /* Header.css */
 
 .header {
+  margin: 20PX 10PX 10PX 10PX;
   display: flex;
   justify-content: space-between;
   align-items: center;
