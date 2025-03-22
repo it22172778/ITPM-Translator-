@@ -14,11 +14,14 @@ const fetchHandler = async () => {
 
 function Notes() {
   const [notes, setNotes] = useState([]);
+  const [filteredNotes, setFilteredNotes] = useState([]);  // New state to hold filtered notes
   const [selectedNote, setSelectedNote] = useState(null);
-  
+  const [searchQuery, setSearchQuery] = useState("");
+
   useEffect(() => {
     fetchHandler().then((data) => {
       setNotes(data.Notes);
+      setFilteredNotes(data.Notes); // Initially show all notes
     })
       .catch((e) => console.log(e));
   }, []);
@@ -30,18 +33,18 @@ function Notes() {
     onAfterPrint: () => alert("Notes Report Successfully Downloaded!"),
   });
 
-  const [searchQuery, setSearchQuery] = useState("");
   const [noResults, setNoResults] = useState(false);
 
-  const handlesearch = () => {
-    fetchHandler().then((data) => {
-      const filteredNotes = data.Notes.filter((note) =>
-        note.name.toString().toLowerCase().includes(searchQuery.toLowerCase())
-      );
-      setNotes(filteredNotes);
-      setNoResults(filteredNotes.length === 0);
-    });
-  }
+  const handlesearch = (e) => {
+    const query = e.target.value.toLowerCase();  // Capture input in lowercase
+    setSearchQuery(query);
+    const filtered = notes.filter((note) =>
+      note.name.toLowerCase().includes(query) ||   // Filter by name field (you can add more fields here if needed)
+      note.description.toLowerCase().includes(query) // For example, filter by description too
+    );
+    setFilteredNotes(filtered);
+    setNoResults(filtered.length === 0);  // If no results, show 'No Notes Found'
+  };
 
   return (
     <div>
@@ -52,31 +55,43 @@ function Notes() {
           display: "flex", flexDirection: "column", alignItems: "center"
         }}>
         <br />
-        <h1 className='hed1'>NOTE PANEL</h1>
+        <h1 className='hed1' style={{ color: '#05043f', fontSize: '36px', fontWeight: 'bold' }}>NOTE PANEL</h1>
 
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '20px' }}>
-          <input className="search" onChange={(e) => setSearchQuery(e.target.value)}
-            type='text'
-            name='search'
-            placeholder='Search user details'
-            style={{ width: '230px', marginRight: '10px' }} />
-          <button className="searchbtn" onClick={handlesearch}>Search</button>
+          <input 
+            className="search" 
+            onChange={handlesearch} 
+            type='text' 
+            name='search' 
+            value={searchQuery}
+            placeholder='Search notes by name or description'
+            style={{ width: '230px', marginRight: '10px', fontSize: '18px', fontWeight: 'bold' }} 
+          />
+          <button className="searchbtn" onClick={handlesearch} style={{ fontSize: '18px', fontWeight: 'bold' }}>Search</button>
         </div>
 
-        <p className='theme1'>
+        <p className='theme1' style={{ fontSize: '20px', color: '#05043f', fontWeight: 'bold' }}>
           Keep your translations organized and enriched with personal insights. This section allows you to delete, edit, and manage notes for each translated text. 
           Simply click on a note to edit or delete it, and use the 'Add New Note' button to expand your collection. Stay organized and make the most out of your bilingual experience with our seamless note management system.
         </p>
 
         <div className="note-panel-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '20px' }}>
           <div className="note-list" style={{ width: '30%', padding: '10px', borderRight: '1px solid #ddd', position: 'absolute', top: '250px', left: '10px' }}>
-            <h2>Your Notes</h2>
+            <h2 style={{ color: '#05043f', fontSize: '28px', fontWeight: 'bold' }}>Your Notes</h2> {/* Increased font size and bold */}
             <ul>
-              {notes.map((note, index) => (
-                <li key={index} onClick={() => setSelectedNote(note)} style={{ cursor: 'pointer', padding: '5px', borderBottom: '1px solid #ccc' }}>
-                  {note.name}
-                </li>
-              ))}
+              {filteredNotes.length > 0 ? (
+                filteredNotes.map((note, index) => (
+                  <li 
+                    key={index} 
+                    onClick={() => setSelectedNote(note)} 
+                    style={{ cursor: 'pointer', padding: '10px', borderBottom: '1px solid #ccc', color: '#05043f', fontSize: '20px', fontWeight: 'bold' }}
+                  >
+                    {note.name} {/* Increased font size and bold */}
+                  </li>
+                ))
+              ) : (
+                <li style={{ padding: '10px', color: '#05043f', fontWeight: 'bold' }}>No Notes Found</li>
+              )}
             </ul>
           </div>
 
@@ -100,13 +115,13 @@ function Notes() {
             ) : (
               <div ref={componentRef} style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', justifyContent: 'space-between' }}>
                 {selectedNote ? (
-                  <Note note={selectedNote} style={{ fontSize: '14px' }} />
+                  <Note note={selectedNote} style={{ fontSize: '14px', fontWeight: 'bold' }} />
                 ) : (
                   <p>Select a note from the list to view details.</p>
                 )}
               </div>
             )}
-            <button className="btn btn-primary" id='downloadreport' onClick={handleprint}>
+            <button className="btn btn-primary" id='downloadreport' onClick={handleprint} style={{ fontSize: '18px', width: '200px', fontWeight: 'bold' }}>
               Download Report
             </button>
           </div>
