@@ -17,15 +17,12 @@ function Notes() {
   const [selectedNote, setSelectedNote] = useState(null);
   
   useEffect(() => {
-    console.log("abc");
     fetchHandler().then((data) => {
-      console.log("data", data);
       setNotes(data.Notes);
     })
       .catch((e) => console.log(e));
   }, []);
 
-  // Implementing the downloading report function
   const componentRef = useRef(null);
   const handleprint = useReactToPrint({
     contentRef: componentRef,
@@ -33,7 +30,6 @@ function Notes() {
     onAfterPrint: () => alert("Notes Report Successfully Downloaded!"),
   });
 
-  // Implementing the search functions
   const [searchQuery, setSearchQuery] = useState("");
   const [noResults, setNoResults] = useState(false);
 
@@ -52,8 +48,8 @@ function Notes() {
       <Nav />
       <div className="bgimg"
         style={{
-          backgroundImage: `url(${bgimg})`, backgroundSize: "cover", position: "sticky", WebkitPosition: "sticky",
-          MozPosition: "sticky"
+          backgroundImage: `url(${bgimg})`, backgroundSize: "cover", minHeight: "100vh",
+          display: "flex", flexDirection: "column", alignItems: "center"
         }}>
         <br />
         <h1 className='hed1'>NOTE PANEL</h1>
@@ -72,9 +68,8 @@ function Notes() {
           Simply click on a note to edit or delete it, and use the 'Add New Note' button to expand your collection. Stay organized and make the most out of your bilingual experience with our seamless note management system.
         </p>
 
-        <div className="note-panel-container" style={{ display: 'flex', alignItems: 'flex-start' }}>
-          {/* Left Sidebar for Note List */}
-          <div className="note-list" style={{ width: '30%', padding: '10px', borderRight: '1px solid #ddd', position: 'absolute', top: '100px', left: '10px' }}>
+        <div className="note-panel-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '20px' }}>
+          <div className="note-list" style={{ width: '30%', padding: '10px', borderRight: '1px solid #ddd', position: 'absolute', top: '250px', left: '10px' }}>
             <h2>Your Notes</h2>
             <ul>
               {notes.map((note, index) => (
@@ -88,12 +83,15 @@ function Notes() {
           {/* Middle Section for Selected Note */}
           <div className="notes-container"
             style={{
-              width: '70%',
-              padding: '20px',  // Increased padding to make the card bigger
-              marginLeft: '32%',
-              boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',  // Optional: Add some shadow for better card appearance
-              borderRadius: '8px',  // Optional: Add rounded corners to the card
-              backgroundColor: 'white'  // Optional: Make the card background white for better contrast
+              width: '60%',
+              padding: '15px',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              borderRadius: '8px',
+              textAlign: 'center',
+              marginTop: '-475px' // Now the card is closer to the search bar
             }}>
             {noResults ? (
               <div>
@@ -108,9 +106,9 @@ function Notes() {
                 )}
               </div>
             )}
-            <button className="btn btn-primary" id='downloadreport' onClick={() => {
-              handleprint();
-            }}>Download Report</button>
+            <button className="btn btn-primary" id='downloadreport' onClick={handleprint}>
+              Download Report
+            </button>
           </div>
         </div>
       </div>
