@@ -28,34 +28,16 @@ function Note(props) {
     }
   return (
     <div style={{alignItems:'center'}}>
-        {/* <br></br>
-      <h1 className='u1'>Note Display</h1>
-      
-      <h2>ID:{_id}</h2>
-      <h2>Name:{name}</h2>
-      <h2>Note:{note}</h2>
-      <h2>Grammer:{grammer}</h2>
-      <h2>Complex Sentence:{complexsentence}</h2>
-      <h2>Description:{description}</h2>
-      <button className='bt'>
-      <Link to={`/notedetails/${_id}`} className='bt1'>Update</Link>
-      </button>
-      <button>Delete</button>
-      <br></br><br></br> */}
-      {/* <button className='bt'>
-      <Link to={`/userdetails/${_id}`} className='bt1'>Update</Link>
-      </button>
-      <button onClick={deleteHandler} className='bt'>Delete</button> */}
-       <div className="card" style={{width: '34rem'}}>
+       <div className="card" style={{width: '25rem', backgroundColor: '#964B00', color: 'white'}}>
    
    <div className="card-body" >
-     <h5 className="card-title" style={{fontSize:'30px'}}>Note Display</h5>
+     <h5 className="card-title" style={{fontSize:'30px', color: 'white'}}>Note Display</h5>
      {/* <h2>ID:{_id}</h2> */}
-      <h2 className="black-text">Name:{name}</h2>
-      <h2 className="black-text">Note:{note}</h2>
-      <h2 className="black-text">Grammer:{grammer}</h2>
-      <h2 className="black-text">Complex Sentence:{complexsentence}</h2>
-      <h2 className="black-text">Description:{description}</h2>
+      <h2 className="black-text" style={{color: 'white'}}>Name:{name}</h2>
+      <h2 className="black-text" style={{color: 'white'}}>Note:{note}</h2>
+      <h2 className="black-text" style={{color: 'white'}}>Grammer:{grammer}</h2>
+      <h2 className="black-text" style={{color: 'white'}}>Complex Sentence:{complexsentence}</h2>
+      <h2 className="black-text" style={{color: 'white'}}>Description:{description}</h2>
      {/* <a href="#" className="btn btn-primary">Go somewhere</a> */}
       {/* <button className='bt'>
       <Link to={`/notedetails/${_id}`} className='btn btn-primary'>Update</Link>
