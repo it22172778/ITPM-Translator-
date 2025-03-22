@@ -7,6 +7,7 @@
     background-size: cover;
     position: relative;
     color: white;
+    margin-top: 10px;
   }
   
   /* Ensure content starts below the navbar */
@@ -19,14 +20,18 @@
   .bk_h1 {
     margin-top: 10px;
     font-size: 2.5rem;
-    color: rgb(58, 2, 2);
+    color: #ff992b;
   }
   
   /* Form styling */
   .bk_m {
     margin: 20px 0;
   }
-  
+  .bk_form{
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
   /* Label styling */
   .form-label {
     font-size: 1.2rem;

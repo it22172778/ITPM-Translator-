@@ -65,7 +65,7 @@ function AddBookmark() {
       <Header />
       <div className='add-bookmark-content'>
         <h1 className='bk_h1'>Add Bookmark</h1>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className='bk_form'>
           <div className='bk_m'>
             <label htmlFor="InputName" className="form-label">Name</label>
             <input
