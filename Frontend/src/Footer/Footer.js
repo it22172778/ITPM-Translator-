@@ -24,14 +24,14 @@ const Footer = () => {
 
         <div className="contact-info">
           <h3>Contact Us</h3>
-          <h5>Email: ceylonspeaks@mail.com</h5>
-          <h5>Phone: +94 (011) 456-7890</h5>
-          <h5>Address: 123 malabe St, colombo, sri-lanka</h5>
+          <h8>Email: ceylonspeaks@mail.com</h8><br></br>
+          <h8>Phone: +94 (011) 456-7890</h8><br></br>
+          <h8>Address: 123 malabe St, colombo, sri-lanka</h8><br></br>
         </div>
 
         <div className="newsletter">
           <h3>Subscribe to Our Newsletter</h3>
-          <form>
+          <form className="newsletter-form">
             <input type="email" placeholder="Enter your email" required />
             <button type="submit">Subscribe</button>
           </form>

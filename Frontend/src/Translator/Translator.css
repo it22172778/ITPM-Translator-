@@ -60,6 +60,7 @@ textarea {
   width: 100%;
   display: flex;
   position: relative;
+  padding: 10px 10px 50px 10px;
 }
 
 .text-box:focus {

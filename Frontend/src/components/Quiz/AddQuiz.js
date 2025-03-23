@@ -4,6 +4,7 @@ import axios from "axios";
 import './quizstyle/AddQuiz.css';
 import Nav from "../Home/NavBar/Nav";
 
+//function for Add Quiz
 function AddQuiz(){
 
     const[question,setQuestion] = useState("");
@@ -68,7 +69,7 @@ function AddQuiz(){
         <div style={{ backgroundColor: "#FCE8E0" }}>
             <Nav/>
         <div className="container"  style={{ backgroundColor: "#f9dace"}} >
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="container-form">
                 <div className="form-group">
                     <button className="delete-button" onClick={goback}>x</button>
                     <label htmlFor="question">Question</label>
