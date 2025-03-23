@@ -80,6 +80,7 @@ nav {
   flex-wrap: wrap;
   justify-content: center;
   gap: 15px;
+  padding-bottom: 50px;
 }
 
 .bookmark-card {

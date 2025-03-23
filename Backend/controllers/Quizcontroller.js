@@ -63,5 +63,35 @@ const editcorrectanswer = async(req,res,next)=>{
 
 }
 
+// Edit question and answers
+// const editQesAndAns = async (req, res, next) => {
+//     const { question, answerone, answertwo, answerthree, correctanswer } = req.body;
+//     const { id } = req.params;
+
+//     try {
+//         const updateQuesAndAns = await QuizModel.findByIdAndUpdate(
+//             id,
+//             {
+//                 $set: {
+//                     question,
+//                     answerOne: answerone,
+//                     answerTwo: answertwo,
+//                     answerThree: answerthree,
+//                     correctAnswer: correctanswer,
+//                 },
+//             },
+//             { new: true }
+//         );
+//         if (!updateQuesAndAns) {
+//             return res.status(404).json({ success: false, message: "Question not found" });
+//         }
+//         res.json({ success: true, message: "Question and answers updated successfully", data: updateQuesAndAns });
+//     } catch (error) {
+//         console.error("Error updating question and answers", error);
+//         res.status(500).json({ success: false, message: "Internal server error" });
+//     }
+// };
+
+
 
 module.exports = {addQuiz,displayQuiz,deleteQuiz,editcorrectanswer};
