@@ -30,6 +30,9 @@ function Nav() {
       <div>
         <img src={Logo} alt="logo_nav" className="nav_logo_user" /> 
       </div>
+      <div className="app_topic">
+            <h1>NEXT GEN</h1>
+          </div>
       <div className="nav_item_user">
         <h3 className="navitem" onClick={() => (window.location.href = "/")}>Home</h3>
         <h3 className="navitem" onClick={() => (window.location.href = "/addnote")}>Add note</h3>
