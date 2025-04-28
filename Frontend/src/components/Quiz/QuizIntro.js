@@ -1,13 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import './quizstyle/QuizIntro.css';
 import Headers from '../../Header/Header';
 
 function QuizIntro() {
   const navigate = useNavigate();
+  const [quizType, setQuizType] = useState("easy");
 
   const handleStart = () => {
-    navigate('/displayquiz');
+    let timer;
+    if (quizType === "easy") {
+      timer = 60;
+    } else if (quizType === "medium") {
+      timer = 45;
+    } else if (quizType === "hard") {
+      timer = 30;
+    }
+    navigate('/displayquiz', { state: { timer } });
   };
 
   return (
@@ -27,6 +36,14 @@ function QuizIntro() {
               <li>Check Your Answers: Once finished, you'll see which answers were correct, along with your choices. Aim for accuracy and have fun!</li>
             </ul>
             <h4>Good luck, and let's get started!</h4>
+            <div className="quiz-type-section">
+              <label htmlFor="quizType">Quiz Type:</label>
+              <select id="quizType" name="quizType" value={quizType} onChange={(e) => setQuizType(e.target.value)}>
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+              </select>
+            </div>
             <button className="btn" type="button" onClick={handleStart}>Start</button>
           </div>
         </div>

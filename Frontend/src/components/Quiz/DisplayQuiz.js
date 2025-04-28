@@ -40,8 +40,14 @@ function DisplayQuiz() {
   const [showResults, setShowResults] = useState(false);
   const [score, setScore] = useState(0);
   const [timeLeft, setTimeLeft] = useState(60);
+  const location = useLocation();
 
   useNavigationBlocker("Are you sure you want to leave the quiz?", true);
+
+  useEffect(() => {
+    const initialTimer = location.state?.timer || 60; // Default to 60 seconds if no timer is passed
+    setTimeLeft(initialTimer);
+  }, [location.state]);
 
   useEffect(() => {
     const fetchQuizzes = async () => {
