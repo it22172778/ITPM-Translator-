@@ -1,14 +1,47 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate, useLocation } from "react-router-dom";
 import '../Quiz/quizstyle/DisplayQuiz.css';
 import Nav from '../Home/NavBar/Nav';
 
+function useNavigationBlocker(message, when) {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!when) return;
+
+    const handleBeforeUnload = (event) => {
+      event.preventDefault();
+      event.returnValue = message;
+    };
+
+    const handleNavigation = (event) => {
+      const confirmLeave = window.confirm(message);
+      if (!confirmLeave) {
+        event.preventDefault();
+      }
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    window.addEventListener("popstate", handleNavigation);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+      window.removeEventListener("popstate", handleNavigation);
+    };
+  }, [message, when]);
+}
+
+//read
 function DisplayQuiz() {
   const [quizzes, setQuizzes] = useState([]);
   const [userAnswers, setUserAnswers] = useState({});
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [showResults, setShowResults] = useState(false);
   const [score, setScore] = useState(0);
+  const [timeLeft, setTimeLeft] = useState(60);
+
+  useNavigationBlocker("Are you sure you want to leave the quiz?", true);
 
   useEffect(() => {
     const fetchQuizzes = async () => {
@@ -23,6 +56,21 @@ function DisplayQuiz() {
     fetchQuizzes();
   }, []);
 
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft((prevTime) => {
+        if (prevTime <= 1) {
+          clearInterval(timer);
+          alert("Time was ended, please try another quiz"); // Show pop-up message
+          window.location.reload(); // Refresh the quiz
+          return 0;
+        }
+        return prevTime - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
 
   const handleAnswerChange = (quizId, answer) => {
     setUserAnswers((prev) => ({ ...prev, [quizId]: answer }));
@@ -103,6 +151,7 @@ function DisplayQuiz() {
         <br/><br/>
        <h1>Weekly Quiz Challenge</h1>
        <h4> Question {currentQuestionIndex + 1}/{quizzes.length}</h4>
+       
         <div className="container">
           <div className="quiz-item">
             <p style={{ color: "white"}}> {currentQuiz.question}</p>
@@ -133,10 +182,9 @@ function DisplayQuiz() {
               <button onClick={handleFinish} className="btn btn-success">Finish</button>
             )}
           </div>
+          <h5 style={{ color: timeLeft <= 5 ? 'red' : 'black' }}>Time Left: {timeLeft} seconds</h5>
         </div>
-
        </div>
-       
     </div>
   );
 }
