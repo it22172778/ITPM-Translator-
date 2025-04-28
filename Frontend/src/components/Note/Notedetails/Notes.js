@@ -1,5 +1,6 @@
 import React,{useState,useEffect,useRef} from 'react';
-import Nav from "../Nav/Nav";
+// import Nav from "../Nav/Nav";
+import Header from '../../../Header/Header';
 import axios from "axios";
 import Note from "../Note/Note";
 import {useReactToPrint} from "react-to-print";
@@ -64,7 +65,7 @@ function Notes() {
 
   return (
     <div>
-      <Nav/>
+      <Header/>
        <div className="bgimg"
       style={{ backgroundImage: `url(${bgimg})`, backgroundSize: "cover" ,position:"sticky",WebkitPosition:"sticky", 
       MozPosition:"sticky"}}> 
