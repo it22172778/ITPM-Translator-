@@ -32,7 +32,7 @@ nav {
 .heading {
   margin-top: 30px;
   font-size: 2.5rem;
-  color: rgb(58, 2, 2);
+  color: rgb(75, 2, 2);
 }
 
 /* Search container styling */
@@ -45,9 +45,9 @@ nav {
 
 /* Styling for search area */
 .search-area {
-  display: flex; /* Use flex to align input and button */
+  display: flex; /* Use flexbox to align items */
+  align-items: center; /* Vertically align the search bar and button */
 }
-
 /* Styling for search bar */
 .search-bar {
   padding: 10px;
@@ -56,19 +56,29 @@ nav {
   border: none;
   font-size: 1rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 40px; /* Explicitly set height */
 }
 
 /* Reduce size of search button */
 .btn-search {
-  padding: 8px 16px; /* Reduced padding for a smaller button */
+  padding: 10px; /* Add padding for consistent height */
   background-color: #007bff;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-left: 10px;
-  min-width: 80px; /* Smaller minimum width */
-  font-size: 0.9rem; /* Smaller font size */
+  margin-left: 10px; /* Space between search bar and button */
+  width: 220px; /* Set a bigger width */
+  font-size: 1rem; /* Match font size with the search bar */
+  line-height: 1.2; /* Ensure consistent line height */
+  height: 40px; /* Explicitly set height to match the search bar */
+  display: flex;
+  align-items: center; /* Center text vertically */
+  justify-content: center; /* Center text horizontally */
+}
+
+.btn-search:hover {
+  background-color: #0056b3;
 }
 
 .btn-search:hover {
@@ -111,14 +121,14 @@ nav {
 
 /* General button styling */
 .btn {
-  padding: 10px 20px;
+  padding: 15px 25px;
   background-color: #28a745; /* Green color for the button */
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   margin: 10px; /* Add margin between buttons */
-  font-size: 1rem;
+  font-size: 1.2rem;
   transition: background-color 0.3s ease, transform 0.2s ease-in-out;
 }
 
