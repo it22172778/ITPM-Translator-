@@ -11,7 +11,7 @@ const AdminLogin = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    if (username === 'admin' && password === 'admin123') {
+    if (username === 'zamran' && password === 'zamran1126') {
       sessionStorage.setItem('isAdmin', true);
       navigate('/admin');
     } else {
