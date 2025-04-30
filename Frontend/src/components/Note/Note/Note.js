@@ -25,15 +25,15 @@ function Note(props) {
     <div style={{ alignItems: 'center' }}>
       <div className="card" style={{ width: '35rem', backgroundColor: '#63C5DA', color: 'white', padding: '20px' }}>
         <div className="card-body">
-          <h5 className="card-title" style={{ fontSize: '24px', color: '#05043f' }}>Note </h5>
+          <h5 className="card-title" style={{ fontSize: '30px', color: '#05043f' }}><strong>Note</strong></h5>
 
           {/* Aligning text to the left */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '15px', textAlign: 'left' }}>
-            <h2 className="black-text" style={{ color: '#05043f', margin: '0', fontSize: '18px' }}>Name: {name}</h2>
-            <h2 className="black-text" style={{ color: '#05043f', margin: '0', fontSize: '18px' }}>Note: {note}</h2>
-            <h2 className="black-text" style={{ color: '#05043f', margin: '0', fontSize: '18px' }}>Grammer: {grammer}</h2>
-            <h2 className="black-text" style={{ color: '#05043f', margin: '0', fontSize: '18px' }}>Complex Sentence: {complexsentence}</h2>
-            <h2 className="black-text" style={{ color: '#05043f', margin: '0', fontSize: '18px' }}>Description: {description}</h2>
+            <h2 className="black-text" style={{ color: '#05043f', margin: '0', fontSize: '18px' }}><strong>Name:</strong> {name}</h2>
+            <h2 className="black-text" style={{ color: '#05043f', margin: '0', fontSize: '18px' }}><strong>Note:</strong> {note}</h2>
+            <h2 className="black-text" style={{ color: '#05043f', margin: '0', fontSize: '18px' }}><strong>Grammer:</strong> {grammer}</h2>
+            <h2 className="black-text" style={{ color: '#05043f', margin: '0', fontSize: '18px' }}><strong>Complex Sentence:</strong> {complexsentence}</h2>
+            <h2 className="black-text" style={{ color: '#05043f', margin: '0', fontSize: '18px' }}><strong>Description:</strong> {description}</h2>
           </div>
 
           {/* Buttons container with margin-top for spacing */}
