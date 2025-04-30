@@ -1,6 +1,6 @@
-# ITPM-Translator-
+# NEXTGEN - 🇱🇰 Sinhala ↔ English Translator
 
-# 🇱🇰 Sinhala ↔ English Translator (MERN Stack)
+> **NEXTGEN – Sinhala English Translator** is an intelligent MERN stack web application that allows users to translate text between Sinhala and English, extract text from images, convert speech to text, and enhance language learning with quizzes, bookmarks, and personal notes.
 
 A full-featured text translation web application built with the **MERN stack** (MongoDB, Express.js, React.js, Node.js) that supports:
 - 🔤 Sinhala ↔ English text translation
@@ -50,10 +50,6 @@ A full-featured text translation web application built with the **MERN stack** (
 | OCR         | Tesseract.js           |
 | Voice Input | Web Speech API         |
 | Translation | Google Translate API / Custom Logic |
-
----
-
-## 📁 Folder Structure
 
 ---
 
