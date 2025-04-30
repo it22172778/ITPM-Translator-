@@ -1,6 +1,7 @@
 /* Header.css */
 
 .header {
+  margin: 20PX 10PX 10PX 10PX;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -37,7 +38,7 @@
   list-style: none;
   display: flex;
   gap: 25px;
-  margin: 0;
+  margin: 5px;
   padding: 0;
 }
 

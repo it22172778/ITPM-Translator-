@@ -32,7 +32,7 @@ nav {
 .heading {
   margin-top: 30px;
   font-size: 2.5rem;
-  color: rgb(75, 2, 2);
+  color: #ff992b;
 }
 
 /* Search container styling */
@@ -61,24 +61,14 @@ nav {
 
 /* Reduce size of search button */
 .btn-search {
-  padding: 10px; /* Add padding for consistent height */
+  padding: 10px 20px 10px 10px; /* Adjusted padding for button */
   background-color: #007bff;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-left: 10px; /* Space between search bar and button */
-  width: 220px; /* Set a bigger width */
-  font-size: 1rem; /* Match font size with the search bar */
-  line-height: 1.2; /* Ensure consistent line height */
-  height: 40px; /* Explicitly set height to match the search bar */
-  display: flex;
-  align-items: center; /* Center text vertically */
-  justify-content: center; /* Center text horizontally */
-}
-
-.btn-search:hover {
-  background-color: #0056b3;
+  margin: 10px 10px 10px 10px;
+  min-width: 10px; /* Set a minimum width for the button */
 }
 
 .btn-search:hover {
@@ -90,6 +80,8 @@ nav {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  gap: 15px;
+  padding-bottom: 50px;
 }
 
 .bookmark-card {

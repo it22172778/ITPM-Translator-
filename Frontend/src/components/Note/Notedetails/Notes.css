@@ -17,7 +17,8 @@
       MozPosition: "sticky",}} */
 #downloadreport{
   margin-right: 250px;
-  background-color:blue;
+  width: 200px; /* Adjust width as needed */
+  background-color:#05043f;
 }
 
 .search{

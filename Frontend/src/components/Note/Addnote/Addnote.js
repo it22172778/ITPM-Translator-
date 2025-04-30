@@ -22,7 +22,7 @@ function Addnote() {
     description: "",
   });
 
-  //implementing a function what should happen when make inputs and submit
+  // Implementing a function what should happen when make inputs and submit
   const handleChange = (e) => {
     setInputs((prevState) => ({
       ...prevState,
@@ -30,7 +30,14 @@ function Addnote() {
     }));
   };
 
-  //after where should navigate,url related function
+  // Handle only letters input for name and grammer fields
+  const handleLettersOnly = (e) => {
+    // Replace anything that is not a letter or space
+    e.target.value = e.target.value.replace(/[^a-zA-Z\s]/g, "");
+    handleChange(e);
+  };
+
+  // After where should navigate, url related function
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(inputs);
@@ -40,7 +47,7 @@ function Addnote() {
     });
   };
 
-  //implementing the sendrequest function from above
+  // Implementing the sendrequest function from above
   const sendRequest = async () => {
     await axios.post("http://localhost:4000/notes", {
       name: String(inputs.name),
@@ -55,13 +62,20 @@ function Addnote() {
     <div>
       <Nav />
       <div className="position-relative d-flex align-items-center justify-content-center vh-100" id='bgimg'
-        style={{ backgroundImage: 'url(${bgImage})', backgroundSize: "cover" ,position:"sticky",WebkitPosition:"sticky"}}>
+        style={{ backgroundImage: 'url(${bgImage})', backgroundSize: "cover", position: "sticky", WebkitPosition: "sticky" }}>
         <form onSubmit={handleSubmit} style={{ marginTop: 200 }}>
-          <br></br><br /><br /><br />
+          <br /><br /><br /><br />
           <h1>Add Notes</h1>
           <div className="mb-3">
             <label htmlFor="InputName" className="form-label">Name</label>
-            <input type="text" className="form-control" name="name" aria-describedby="nameHelp" onChange={handleChange} value={inputs.name} />
+            <input 
+              type="text" 
+              className="form-control" 
+              name="name" 
+              aria-describedby="nameHelp" 
+              onChange={handleLettersOnly} 
+              value={inputs.name} 
+            />
             <div id="namehelp" className="form-text">Please remember the name you are able to search by this keyword</div>
           </div>
           <div className="mb-3">
@@ -70,7 +84,14 @@ function Addnote() {
           </div>
           <div className="mb-3">
             <label htmlFor="InputGrammer" className="form-label">Grammer</label>
-            <input type="text" className="form-control" name="grammer" onChange={handleChange} value={inputs.grammer} required />
+            <input 
+              type="text" 
+              className="form-control" 
+              name="grammer" 
+              onChange={handleLettersOnly} 
+              value={inputs.grammer} 
+              required 
+            />
           </div>
           <div className="mb-3">
             <label htmlFor="InputComplexsentence" className="form-label">Complex sentence</label>
@@ -83,7 +104,6 @@ function Addnote() {
           <button type="submit" className="btn btn-primary">Submit</button>
         </form>
       </div>
-      
     </div>
   );
 }
