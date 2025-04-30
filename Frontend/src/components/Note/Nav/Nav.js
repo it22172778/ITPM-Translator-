@@ -1,24 +1,25 @@
 import React from 'react';
 import './Nav.css';
-import Logo from "./images/logo.jpeg";
+import Logo from './images/image.png';
 
 function Nav() {
   return (
-    <div>
-      <div className="nav_con_user">
-        <div className="left_section">
-          <img src={Logo} alt="logo_nav" className="nav_logo_user" />
-          <h1 className="app_topic">NEXT GEN</h1>
-        </div>
-        <div className="nav_item_user">
-          <h3 className="navitem" onClick={() => (window.location.href = "/")}>Home</h3>
-          <h3 className="navitem" onClick={() => (window.location.href = "/addnote")}>Add note</h3>
-          <h3 className="navitem" onClick={() => (window.location.href = "/notedetails")}>Note details</h3>
-          <button className="nav_btn_log" onClick={() => (window.location.href = "/login")}>Login</button>
-          <button className="nav_btn_regi" onClick={() => (window.location.href = "/userregister")}>Register</button>
-        </div>
+    <header className="header">
+      <div className="logo">
+        <img src={Logo} alt="NEXT GEN Logo" className="logo-img" />
+        <h2 className="text">NEXT GEN</h2>
       </div>
-    </div>
+      <nav className="navbar">
+        <ul className="nav-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/addnote">Add Note</a></li>
+          <li><a href="/notedetails">Notes</a></li>
+          <li><a href="/bookmarkdetails">Bookmark</a></li>
+          <li><a href="/quizintro">Quiz</a></li>
+          
+        </ul>
+      </nav>
+    </header>
   );
 }
 
