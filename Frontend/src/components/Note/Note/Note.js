@@ -5,7 +5,6 @@ import './Note.css';
 
 function Note(props) {
   const { _id, name, note, grammer, complexsentence, description } = props.note;
-
   const history = useNavigate();
 
   const deleteHandler = async () => {

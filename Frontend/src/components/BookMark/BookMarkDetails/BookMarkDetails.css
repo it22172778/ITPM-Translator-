@@ -45,9 +45,9 @@ nav {
 
 /* Styling for search area */
 .search-area {
-  display: flex; /* Use flex to align input and button */
+  display: flex; /* Use flexbox to align items */
+  align-items: center; /* Vertically align the search bar and button */
 }
-
 /* Styling for search bar */
 .search-bar {
   padding: 10px;
@@ -56,9 +56,10 @@ nav {
   border: none;
   font-size: 1rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 40px; /* Explicitly set height */
 }
 
-/* Styling for the search button */
+/* Reduce size of search button */
 .btn-search {
   padding: 10px 20px 10px 10px; /* Adjusted padding for button */
   background-color: #007bff;
@@ -93,6 +94,18 @@ nav {
   color: black;
 }
 
+/* Increase font size for bookmark title */
+.bookmark-card .title {
+  font-size: 1.75rem; /* Increased font size for title */
+  font-weight: bold;
+}
+
+/* Reduce font size for bookmark details */
+.bookmark-card .details {
+  font-size: 0.85rem; /* Reduced font size for details */
+  color: gray;
+}
+
 .bookmark-card:hover {
   transform: scale(1.02);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
@@ -100,14 +113,14 @@ nav {
 
 /* General button styling */
 .btn {
-  padding: 10px 20px;
+  padding: 15px 25px;
   background-color: #28a745; /* Green color for the button */
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   margin: 10px; /* Add margin between buttons */
-  font-size: 1rem;
+  font-size: 1.2rem;
   transition: background-color 0.3s ease, transform 0.2s ease-in-out;
 }
 
