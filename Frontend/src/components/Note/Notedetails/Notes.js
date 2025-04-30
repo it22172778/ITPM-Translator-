@@ -56,7 +56,6 @@ function Notes() {
         }}>
         <br />
         <h1 className='hed1' style={{ color: '#05043f', fontSize: '36px', fontWeight: 'bold' }}>NOTE PANEL</h1>
-
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '20px' }}>
           <input 
             className="search" 
