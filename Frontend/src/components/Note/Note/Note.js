@@ -12,7 +12,7 @@ function Note(props) {
     if (userconfirm) {
       try {
         await axios.delete(`http://localhost:4000/notes/${_id}`);
-        window.alert("Bookmark Deleted Successfully");
+        window.alert("Note Deleted Successfully");
         history("/notedetails");
         window.location.reload();
       } catch (error) {
