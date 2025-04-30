@@ -46,9 +46,7 @@ const Translator = () => {
     const options = {
       method: "POST",
       headers: {
-        "x-rapidapi-key": "330032f6a6msh2c040c52967a8b4p18ff0fjsn9302f7579e4e",
-        "x-rapidapi-host": "nlp-translation.p.rapidapi.com",
-        "Content-Type": "application/x-www-form-urlencoded",
+        
       },
       body: data,
     };

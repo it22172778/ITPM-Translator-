@@ -17,13 +17,19 @@ function Updatenote() {
         .then((data) => setInputs(data.note));
     };
     fetchHandler();
-  },[id]);
+  }, [id]);
 
-  //implementing the sendrequest function
+  // Handle only letters input for name and grammer fields
+  const handleLettersOnly = (e) => {
+    // Replace anything that is not a letter or space
+    e.target.value = e.target.value.replace(/[^a-zA-Z\s]/g, "");
+    handleChange(e);
+  };
+
+  // Implementing the sendrequest function
   const sendRequest = async () => {
     await axios
       .put(`http://localhost:4000/notes/${id}`, {
-        //module attribute name= form input.name
         name: String(inputs.name),
         note: String(inputs.note),
         grammer: String(inputs.grammer),
@@ -33,7 +39,7 @@ function Updatenote() {
       .then((res) => res.data);
   };
 
-  //implementing a function what should happen when make inputs and submit
+  // Implementing the function that should happen when making inputs and submitting
   const handleChange = (e) => {
     setInputs((prevState) => ({
       ...prevState,
@@ -41,51 +47,58 @@ function Updatenote() {
     }));
   };
 
-   //after where should navigate,url related function
-   const handleSubmit=async(e)=>{
+  // After where should navigate, url related function
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(inputs);
-    sendRequest().then(()=>history('/notedetails'),alert("Notedetails updated successfully"));
-   };
+    sendRequest().then(() => history('/notedetails'), alert("Notedetails updated successfully"));
+  };
 
   return (
     <div>
-      <Nav/>
+      <Nav />
       <div className="position-relative d-flex align-items-center justify-content-center vh-100"
-      style={{ backgroundImage: `url(${bgImage})`, backgroundSize: "cover" }}>
-      
-      
-      <form onSubmit={handleSubmit}>
-      {/* <br/><br/><br/><br/><br/> */}
-      <h1 style={{marginTop:"90px"}}>Update Notes</h1>
-  <div class="mb-3">
-    <label for="InputName" class="form-label">Name</label>
-    <input type="text" class="form-control" name="name" aria-describedby="nameHelp" onChange={handleChange} value={inputs.name}/>
-    <div id="namehelp" class="form-text">Please remember the name you are able to search by this keyword</div>
-  </div>
-  <div class="mb-3">
-    <label for="InputNote" class="form-label">Note</label>
-    <textarea  name="note" class="form-control" onChange={handleChange} value={inputs.note} required/>
-  </div>
-  <div class="mb-3">
-    <label for="InputGrammer" class="form-label">Grammer</label>
-    <input type="text" class="form-control" name="grammer" onChange={handleChange} value={inputs.grammer} required/>
-  </div>
-  <div class="mb-3">
-    <label for="InputComplexsentence" class="form-label">Complex sentence</label>
-    <input type="text" class="form-control" name="complexsentence" onChange={handleChange} value={inputs.complexsentence} required/>
-  </div>
-  <div class="mb-3">
-    <label for="InputDescription" class="form-label">Description</label>
-    <input type="text" class="form-control" name="description" onChange={handleChange} value={inputs.description} required/>
-  </div>
-  {/* <div class="mb-3 form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1"/>
-    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-  </div> */}
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
-    </div>
+        style={{ backgroundImage: `url(${bgImage})`, backgroundSize: "cover" }}>
+        <form onSubmit={handleSubmit}>
+          <h1 style={{ marginTop: "90px" }}>Update Notes</h1>
+          <div className="mb-3">
+            <label htmlFor="InputName" className="form-label">Name</label>
+            <input 
+              type="text" 
+              className="form-control" 
+              name="name" 
+              aria-describedby="nameHelp" 
+              onChange={handleLettersOnly} 
+              value={inputs.name} 
+            />
+            <div id="namehelp" className="form-text">Please remember the name you are able to search by this keyword</div>
+          </div>
+          <div className="mb-3">
+            <label htmlFor="InputNote" className="form-label">Note</label>
+            <textarea name="note" className="form-control" onChange={handleChange} value={inputs.note} required />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="InputGrammer" className="form-label">Grammer</label>
+            <input 
+              type="text" 
+              className="form-control" 
+              name="grammer" 
+              onChange={handleLettersOnly} 
+              value={inputs.grammer} 
+              required 
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="InputComplexsentence" className="form-label">Complex sentence</label>
+            <input type="text" className="form-control" name="complexsentence" onChange={handleChange} value={inputs.complexsentence} required />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="InputDescription" className="form-label">Description</label>
+            <input type="text" className="form-control" name="description" onChange={handleChange} value={inputs.description} required />
+          </div>
+          <button type="submit" className="btn btn-primary">Submit</button>
+        </form>
+      </div>
     </div>
   );
 }
