@@ -69,7 +69,7 @@ function Notes() {
        <div className="bgimg"
       style={{ backgroundImage: `url(${bgimg})`, backgroundSize: "cover" ,position:"sticky",WebkitPosition:"sticky", 
       MozPosition:"sticky"}}> 
-      <h1 className='hed1'>Note Details Display Page</h1>
+      <h1 className='hed1'>Note Details Page</h1>
       <input className="search" onChange={(e) => setSearchQuery(e.target.value)}
              type='text'
              name='search'
