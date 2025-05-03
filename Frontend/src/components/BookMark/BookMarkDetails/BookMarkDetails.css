@@ -48,6 +48,7 @@ nav {
   display: flex; /* Use flexbox to align items */
   align-items: center; /* Vertically align the search bar and button */
 }
+
 /* Styling for search bar */
 .search-bar {
   padding: 10px;
@@ -98,6 +99,9 @@ nav {
 .bookmark-card .title {
   font-size: 1.75rem; /* Increased font size for title */
   font-weight: bold;
+  /* Change text color for Bookmark Display */
+  color: #00008b; /* Dark blue */
+  font-weight: bold; /* Optional: make it bold */
 }
 
 /* Reduce font size for bookmark details */
