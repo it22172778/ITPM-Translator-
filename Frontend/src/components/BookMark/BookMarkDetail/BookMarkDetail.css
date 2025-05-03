@@ -4,5 +4,45 @@
     }
 }
 .card-body{
-    margin-bottom: 50px;
+    margin-bottom: 80px;
 }
+/* Styling for the Bookmark Display title */
+.card-title {
+    font-size: 2rem; /* Adjust font size as needed */
+    color: #0056b3; /* Change to your desired color (e.g., dark blue) */
+    font-weight: bold; /* Optional: make it bold */
+    text-align: center; /* Optional: center the text */
+  }
+ /* Update button styling */
+.card-body .btn-update {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #007bff; /* Blue color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease-in-out;
+  }
+  
+  .card-body .btn-update:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: scale(1.05);
+  }
+  
+  /* Delete button styling */
+  .card-body .btn-delete {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #dc3545; /* Red color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease-in-out;
+  }
+  
+  .card-body .btn-delete:hover {
+    background-color: #a71d2a; /* Darker red on hover */
+    transform: scale(1.05);
+  }
