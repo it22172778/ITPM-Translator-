@@ -1,47 +1,31 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import axios from "axios"; // Import axios
 import '../Quiz/quizstyle/DisplayQuiz.css';
 import Nav from '../Home/NavBar/Nav';
 
-function useNavigationBlocker(message, when) {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!when) return;
-
-    const handleBeforeUnload = (event) => {
-      event.preventDefault();
-      event.returnValue = message;
-    };
-
-    const handleNavigation = (event) => {
-      const confirmLeave = window.confirm(message);
-      if (!confirmLeave) {
-        event.preventDefault();
-      }
-    };
-
-    window.addEventListener("beforeunload", handleBeforeUnload);
-    window.addEventListener("popstate", handleNavigation);
-
-    return () => {
-      window.removeEventListener("beforeunload", handleBeforeUnload);
-      window.removeEventListener("popstate", handleNavigation);
-    };
-  }, [message, when]);
-}
-
-//read
 function DisplayQuiz() {
+  const location = useLocation();
   const [quizzes, setQuizzes] = useState([]);
   const [userAnswers, setUserAnswers] = useState({});
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [showResults, setShowResults] = useState(false);
   const [score, setScore] = useState(0);
-  const [timeLeft, setTimeLeft] = useState(60);
+  const [timeLeft, setTimeLeft] = useState(60); // Default timer value
 
-  useNavigationBlocker("Are you sure you want to leave the quiz?", true);
+  // Set timer based on quiz type
+  useEffect(() => {
+    const quizType = location.state?.quizType || "easy"; // Default to "easy" if no quiz type is passed
+    let timerValue;
+    if (quizType === "easy") {
+      timerValue = 60;
+    } else if (quizType === "medium") {
+      timerValue = 45;
+    } else if (quizType === "hard") {
+      timerValue = 30;
+    }
+    setTimeLeft(timerValue);
+  }, [location.state]);
 
   useEffect(() => {
     const fetchQuizzes = async () => {
@@ -85,14 +69,13 @@ function DisplayQuiz() {
   };
 
   const handleFinish = () => {
-
     const unanswered = quizzes.some((quiz) => !userAnswers[quiz._id]);
-  
-  if (unanswered) {
-    alert("Please answer all the questions before finishing the quiz.");
-    return;
-  }
-  
+
+    if (unanswered) {
+      alert("Please answer all the questions before finishing the quiz.");
+      return;
+    }
+
     const calculatedScore = quizzes.reduce((acc, quiz) => {
       if (userAnswers[quiz._id] === quiz.correctAnswer) {
         return acc + 1;
@@ -102,41 +85,41 @@ function DisplayQuiz() {
     setScore(calculatedScore);
     setShowResults(true);
   };
-  
 
   if (showResults) {
     return (
       <div className="background" style={{ backgroundColor: "#FCE8E0" }}>
-        <Nav/>
-        <div className="container" style={{ backgroundColor: "#f9dace"}} >
-        <h3>Quiz Results</h3>
-        <p style={{ color: "red", fontSize: "15px" }}><strong style={{ color: "red", fontSize: "15px" }}>Total Score:</strong> {score} / {quizzes.length}</p> {/* Display score */}
-        {quizzes.map((quiz, index) => (
-          <div key={quiz._id} className="quiz-item">
-            <p><strong style={{ color: "#4da6ff" }}>Question {index + 1}:</strong>
-               <span style={{ color: "black" }}>{quiz.question}</span>
-            </p>
-            <p>
-              <strong style={{ color: "black" }}>Your Answer:</strong>
-              <span style={{ color: "black" }}> {userAnswers[quiz._id]} </span> - 
-              {userAnswers[quiz._id] === quiz.correctAnswer ? (
-                <span style={{ color: "green" }}> Correct</span>
-              ) : (
-                <span style={{ color: "red" }}> Wrong</span>
-              )}
-            </p>
-            <p><strong  style={{ color: "black" }}>Correct Answer:</strong> 
-            <span style={{ color: "black" }}>{quiz.correctAnswer}</span></p>
-          </div>
-        ))}
+        <Nav />
+        <div className="container" style={{ backgroundColor: "#f9dace" }}>
+          <h3>Quiz Results</h3>
+          <p style={{ color: "red", fontSize: "15px" }}>
+            <strong>Total Score:</strong> {score} / {quizzes.length}
+          </p>
+          {quizzes.map((quiz, index) => (
+            <div key={quiz._id} className="quiz-item">
+              <p>
+                <strong style={{ color: "#4da6ff" }}>Question {index + 1}:</strong>
+                <span style={{ color: "black" }}>{quiz.question}</span>
+              </p>
+              <p>
+                <strong>Your Answer:</strong>
+                <span> {userAnswers[quiz._id]} </span> -
+                {userAnswers[quiz._id] === quiz.correctAnswer ? (
+                  <span style={{ color: "green" }}> Correct</span>
+                ) : (
+                  <span style={{ color: "red" }}> Wrong</span>
+                )}
+              </p>
+              <p>
+                <strong>Correct Answer:</strong>
+                <span>{quiz.correctAnswer}</span>
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
-      <br/>
-
-      </div>
-      
     );
   }
-  
 
   if (quizzes.length === 0) {
     return <p>Loading...</p>;
@@ -146,19 +129,17 @@ function DisplayQuiz() {
 
   return (
     <div>
-      <Nav/>
-       <div className="bkimg">
-        <br/><br/>
-       <h1>Weekly Quiz Challenge</h1>
-       <h4> Question {currentQuestionIndex + 1}/{quizzes.length}</h4>
-       
+      <Nav />
+      <div className="bkimg">
+        <h1>Weekly Quiz Challenge</h1>
+        <h4> Question {currentQuestionIndex + 1}/{quizzes.length}</h4>
         <div className="container">
           <div className="quiz-item">
-            <p style={{ color: "white"}}> {currentQuiz.question}</p>
+            <p style={{ color: "white" }}>{currentQuiz.question}</p>
             <div>
               {[currentQuiz.answerOne, currentQuiz.answerTwo, currentQuiz.answerThree].map((answer, i) => (
-                <div key={i} style={{ marginBottom: '10px' }}>
-                  <label >
+                <div key={i} style={{ marginBottom: "10px" }}>
+                  <label>
                     <input
                       type="radio"
                       name={`quiz-${currentQuiz._id}`}
@@ -182,9 +163,9 @@ function DisplayQuiz() {
               <button onClick={handleFinish} className="btn btn-success">Finish</button>
             )}
           </div>
-          <h5 style={{ color: timeLeft <= 5 ? 'red' : 'black' }}>Time Left: {timeLeft} seconds</h5>
+          <h5 style={{ color: timeLeft <= 5 ? "red" : "black" }}>Time Left: {timeLeft} seconds</h5>
         </div>
-       </div>
+      </div>
     </div>
   );
 }
