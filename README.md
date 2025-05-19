@@ -76,3 +76,4 @@ npm install
 
 # Run both servers (you can use concurrently)
 npm run dev
+python run
