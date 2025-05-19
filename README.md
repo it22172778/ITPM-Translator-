@@ -47,9 +47,9 @@ A full-featured text translation web application built with the **MERN stack** (
 | Frontend    | React.js, Tailwind CSS |
 | Backend     | Node.js, Express.js    |
 | Database    | MongoDB                |
-| OCR         | Tesseract.js           |
+| image       | Python, OCR and Tesseract |
 | Voice Input | Web Speech API         |
-| Translation | Google Translate API / Custom Logic |
+| Text Translation | NLP Translation API |
 
 ---
 
