@@ -59,6 +59,24 @@ A full-featured text translation web application built with the **MERN stack** (
 - Node.js and npm
 - MongoDB installed and running
 
+## 👨‍💻 Author
+
+- **Almaas Azaam**
+- GitHub: [@it22172778](https://github.com/it22172778)
+- Email: ahamedalmaas123@gmail.com
+
+- **Zamran Ahamed**
+- GitHub: [@ZamranAhamed](https://github.com/ZamranAhamed)
+- Email: zamranahamed7@gmail.com
+
+- **Sansala Peiris**
+- GitHub: [@sansalapeiris](https://github.com/sansalapeiris)
+- Email: sansalapeiris2002@gmail.com 
+
+- **Mohamed Sabry**
+- GitHub: [@it22543332](https://github.com/it22543332)
+- Email: sabry18700@gmail.com
+
 ### 🚀 Run Locally
 
 ```bash
